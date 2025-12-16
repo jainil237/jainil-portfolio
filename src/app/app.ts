@@ -16,10 +16,15 @@ export class App {
   protected readonly title = signal('jainil-portfolio');
   data = RESUME_DATA;
   activeModalData: any = null;
+  isMenuOpen = false;
+  showScrollTop = false;
 
   scrollTo(id: string) {
     const el = document.getElementById(id);
     el?.scrollIntoView({ behavior: 'smooth' });
+    if (this.isMenuOpen) {
+      this.toggleMenu(false);
+    }
   }
 
   openModal(item: any) {
@@ -30,6 +35,19 @@ export class App {
   closeModal() {
     this.activeModalData = null;
     document.body.style.overflow = '';
+  }
+
+  toggleMenu(forceState?: boolean) {
+    this.isMenuOpen = forceState ?? !this.isMenuOpen;
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.showScrollTop = window.scrollY > 400;
   }
 
   @HostListener('document:keydown.escape', ['$event'])
