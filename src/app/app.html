@@ -71,6 +71,16 @@
               class="text-sm font-medium text-zinc-400 hover:text-white transition-colors cursor-pointer"
               >Education</a
             >
+            <a
+              (click)="scrollTo('awards')"
+              class="text-sm font-medium text-zinc-400 hover:text-white transition-colors cursor-pointer"
+              >Awards</a
+            >
+            <a
+              (click)="scrollTo('certifications')"
+              class="text-sm font-medium text-zinc-400 hover:text-white transition-colors cursor-pointer"
+              >Certifications</a
+            >
             <div class="w-px h-4 bg-white/20"></div>
             <a
               (click)="scrollTo('connect')"
@@ -116,6 +126,17 @@
               >Education</a
             >
             <a
+              (click)="scrollTo('awards')"
+              class="text-sm font-medium text-zinc-400 hover:text-white transition-colors cursor-pointer"
+              >Awards</a
+            >
+            <a
+              (click)="scrollTo('certifications')"
+              class="text-sm font-medium text-zinc-400 hover:text-white transition-colors cursor-pointer"
+              >Certifications</a
+            >
+            <div class="w-px h-4 bg-white/20"></div>
+            <a
               (click)="scrollTo('connect'); toggleMenu(false)"
               class="text-sm font-medium text-indigo-300 flex items-center gap-2 cursor-pointer"
             >
@@ -138,9 +159,7 @@
       </nav>
 
       <!-- 1. Headline -->
-      <h1
-        class="text-3xl md:text-5xl font-bold tracking-tight leading-[1.1] text-white animate-slide-diagonal"
-      >
+      <h1 class="text-3xl md:text-5xl font-bold tracking-tight text-white animate-pulse">
         {{ data.profile.headline }}
       </h1>
 
@@ -318,18 +337,32 @@
 
         <div class="flex items-center justify-between mb-6">
           <h3 class="text-lg font-medium text-zinc-200">Experience</h3>
-          <span class="text-xs text-zinc-500 font-mono">LATEST</span>
+          <!-- NOTE: "LATEST" text removed from here -->
+          <!-- <span class="text-xs text-zinc-500 font-mono">LATEST</span>  -->
         </div>
 
-        <div class="space-y-6 flex-grow">
-          <div
-            *ngFor="let job of data.experience"
-            class="relative pl-6 border-l border-white/10 group"
-          >
-            <!-- Timeline Dot -->
+        <!-- Continuous Timeline Container -->
+        <div class="relative pl-4 space-y-8 flex-grow">
+          <!-- [NEW] Continuous Vertical Line -->
+          <!-- Positioned absolutely to span top to bottom of the list -->
+          <div class="absolute left-[19px] top-2 bottom-2 w-px bg-white/10"></div>
+
+          <!-- Loop through experiences -->
+          <div *ngFor="let job of data.experience; let first = first" class="relative pl-8 group">
+            <!-- [NEW] Timeline Dot -->
+            <!-- z-10 ensures it sits ON TOP of the vertical line -->
             <div
-              class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-zinc-900 border-2 border-indigo-500 group-hover:bg-indigo-500 transition-colors"
+              class="absolute left-[15px] top-1.5 w-2.5 h-2.5 rounded-full bg-zinc-900 border-2 border-indigo-500 group-hover:bg-indigo-500 transition-colors z-10"
             ></div>
+
+            <!-- [NEW] LATEST Tag -->
+            <!-- Only visible for the first item (*ngIf="first") -->
+            <div
+              *ngIf="first"
+              class="absolute -right-1 top-0.5 px-2 py-0.5 bg-indigo-500/10 border border-indigo-500/20 rounded text-[10px] font-bold text-indigo-400 hidden sm:block animate-pulse"
+            >
+              LATEST
+            </div>
 
             <div class="flex flex-col gap-1 mb-2">
               <h4
@@ -418,15 +451,17 @@
           </svg>
         </div>
 
-        <div class="space-y-6 flex-grow">
-          <div
-            *ngFor="let edu of data.education"
-            class="relative pl-6 border-l border-white/10 group"
-          >
+        <div class="relative pl-4 space-y-8 flex-grow">
+          <!-- [NEW] Continuous Vertical Line -->
+          <div class="absolute left-[19px] top-2 bottom-2 w-px bg-white/10"></div>
+
+          <div *ngFor="let edu of data.education; let first = first" class="relative pl-8 group">
+            <!-- [NEW] Timeline Dot (Emerald) -->
             <div
-              class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-zinc-900 border-2 border-emerald-500 group-hover:bg-emerald-500 transition-colors"
+              class="absolute left-[15px] top-1.5 w-2.5 h-2.5 rounded-full bg-zinc-900 border-2 border-emerald-500 group-hover:bg-emerald-500 transition-colors z-10"
             ></div>
 
+            <!-- Content -->
             <div class="flex flex-col gap-1 mb-2">
               <h4
                 class="text-base font-semibold text-zinc-100 group-hover:text-emerald-300 transition-colors"
@@ -518,7 +553,7 @@
       </div>
 
       <!-- 7. Awards (Span 3 cols) -->
-      <div class="glass-card md:col-span-3 p-6 flex flex-col gap-4">
+      <div id="awards" class="glass-card md:col-span-3 p-6 flex flex-col gap-4">
         <div class="flex items-center gap-3">
           <div class="p-2 bg-yellow-500/10 rounded-lg text-yellow-500">
             <svg
@@ -579,7 +614,7 @@
       </div>
 
       <!-- 8. Certifications-->
-      <div class="glass-card md:col-span-3 p-6 flex flex-col gap-4">
+      <div id="certifications" class="glass-card md:col-span-3 p-6 flex flex-col gap-4">
         <div class="flex items-center gap-3">
           <div class="p-2 bg-sky-500/10 rounded-lg text-sky-500">
             <svg
@@ -627,10 +662,10 @@
             <div
               class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-3 py-2 bg-zinc-900 border border-zinc-700 rounded-lg shadow-xl opacity-0 group-hover/item:opacity-100 transition-opacity pointer-events-none z-30"
             >
-              <p *ngIf="cert.date" class="text-xs text-sky-400 font-mono">
-                Issued: {{ cert.date }}
+              <p *ngIf="cert?.date" class="text-xs text-sky-400 font-mono">
+                Issued: {{ cert?.date }}
               </p>
-              <p *ngIf="cert.link" class="text-[10px] text-zinc-400">Click to view credential</p>
+              <p *ngIf="cert?.link" class="text-[10px] text-zinc-400">Click to view credential</p>
               <div
                 class="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-zinc-700"
               ></div>

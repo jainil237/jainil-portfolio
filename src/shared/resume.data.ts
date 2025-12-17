@@ -52,6 +52,21 @@ export const RESUME_DATA = {
         'WCAG 2.1',
       ],
     },
+    {
+      id: 'job-2',
+      type: 'experience' as const,
+      title: 'Intern',
+      subtitle: 'DXFactor Solutions Private Limited',
+      date: 'Jul 2022 – Dec 2022',
+      location: 'Ahmedabad, India',
+      description:
+        'Developed responsive dashboards and RESTful APIs to enhance business decision-making.',
+      details: [
+        'Developed responsive, data-driven dashboards using Angular and AmCharts, enabling business teams to visualize key performance metrics and improve decision-making efficiency.',
+        'Designed and implemented modular RESTful APIs with .NET Core Web API, ensuring scalability, reusability, and seamless integration with frontend components.',
+      ],
+      tags: ['Angular', 'AmCharts', '.NET Core Web API', 'RESTful APIs'],
+    },
   ],
   education: [
     {
@@ -108,25 +123,25 @@ export const RESUME_DATA = {
     {
       title: 'IBM Full Stack Software Developer',
       org: 'IBM',
-      date: '2022',
+      date: '',
       link: 'https://coursera.org/share/c5155c006c4d0f8d9559c3a14be2a2f3',
     },
     {
       title: 'Intro to TensorFlow for AI/ML/DL',
       org: 'DeepLearning.AI',
-      date: '2021',
+      date: '',
       link: 'https://coursera.org/share/ba18b5227e19d8d51d2c989468817360',
     },
     {
       title: 'Programming Foundations: JS, HTML, CSS',
       org: 'Coursera',
-      date: '2020',
+      date: '',
       link: 'https://coursera.org/share/2ecb4fae78477f74c26bf83becddbefe',
     },
     {
       title: 'McKinsey.org Forward Program',
       org: 'McKinsey & Company',
-      date: '2023',
+      date: '',
       link: 'https://www.credly.com/badges/e1a23e7d-c10d-4662-8f1f-99a8984d4f6d/public_url',
     },
   ],
