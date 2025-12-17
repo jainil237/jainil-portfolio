@@ -2,15 +2,12 @@ import { Component, signal, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RESUME_DATA } from '../shared/resume.data';
 
-
-
-
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './app.html',
-  styleUrls: ['./app.css']
+  styleUrls: ['./app.css'],
 })
 export class App {
   protected readonly title = signal('jainil-portfolio');

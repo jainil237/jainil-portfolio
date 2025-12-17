@@ -1,124 +1,142 @@
 :host {
-      display: block;
-    }
+  display: block;
+}
 
-    /* Core Glass Card Class */
-    .glass-card {
-      @apply bg-[#111111]/60 backdrop-blur-2xl border border-white/5 rounded-3xl shadow-2xl;
-      transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), border-color 0.3s ease;
-    }
-    
-    .glass-card:hover {
-      @apply border-white/10;
-      transform: scale(1.005);
-    }
+/* Core Glass Card Class */
+.glass-card {
+  @apply bg-[#111111]/60 backdrop-blur-2xl border border-white/5 rounded-3xl shadow-2xl;
+  transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), border-color 0.3s ease;
+}
 
-    /* Custom Scrollbar */
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 4px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-track {
-      background: rgba(255, 255, 255, 0.02);
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 4px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
+.glass-card:hover {
+  @apply border-white/10;
+  transform: scale(1.005);
+}
 
-    /* Modal Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: rgba(255, 255, 255, 0.02);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 4px;
-    }
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
 
-    @keyframes shimmer {
-      0% { background-position: 200% center; }
-      100% { background-position: -200% center; }
-    }
-    .animate-shimmer {
-      animation: shimmer 8s linear infinite;
-    }
+/* Modal Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
 
-    @keyframes pulse-slow {
-      0%, 100% { opacity: 0.4; transform: scale(1); }
-      50% { opacity: 0.3; transform: scale(1.1); }
-    }
-    .animate-pulse-slow {
-      animation: pulse-slow 8s ease-in-out infinite;
-    }
-    
-    /* CSS Animation for Modal Entry */
-    @keyframes modalEnter {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    .modal-enter {
-      animation: modalEnter 0.2s ease-out forwards;
-    }
+@keyframes shimmer {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+.animate-shimmer {
+  animation: shimmer 8s linear infinite;
+}
 
-    /* Name Slide Animation */
-    @keyframes slideDiagonal {
-      0% {
-        opacity: 0;
-        transform: translate(-30px, -30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translate(0, 0);
-      }
-    }
-    .animate-slide-diagonal {
-      animation: slideDiagonal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      animation-delay: 0.2s;
-    }
-    
-    /* Fade Up Animation for Pitch */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .animate-fade-in-up {
-      animation: fadeInUp 0.8s ease-out forwards;
-      animation-delay: 0.5s;
-      opacity: 0; /* Start hidden */
-    }
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1.1);
+  }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite;
+}
 
-    /* Name Gradient Shine Animation */
-    .name-gradient {
-      background: linear-gradient(
-        90deg, 
-        #94a3b8 0%,    
-        #ffffff 50%,    
-        #94a3b8 100%    
-      );
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shine 4s linear infinite;
-    }
-    
-    @keyframes shine {
-      to {
-        background-position: 200% center;
-      }
-    }
-    
-    /* Perspective for Code Card */
-    .perspective-1000 {
-       perspective: 1000px;
-    }
+/* CSS Animation for Modal Entry */
+@keyframes modalEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.modal-enter {
+  animation: modalEnter 0.2s ease-out forwards;
+}
 
-    @media (max-width: 48rem) {
-      nav .glass-card {
-        width: 100%;
-      }
-    }
+/* Name Slide Animation */
+@keyframes slideDiagonal {
+  0% {
+    opacity: 0;
+    transform: translate(-30px, -30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+.animate-slide-diagonal {
+  animation: slideDiagonal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.2s;
+}
+
+/* Fade Up Animation for Pitch */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+  animation-delay: 0.5s;
+  opacity: 0; /* Start hidden */
+}
+
+/* Name Gradient Shine Animation */
+.name-gradient {
+  background: linear-gradient(90deg, #94a3b8 0%, #ffffff 50%, #94a3b8 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 4s linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Perspective for Code Card */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+@media (max-width: 48rem) {
+  nav .glass-card {
+    width: 100%;
+  }
+}
