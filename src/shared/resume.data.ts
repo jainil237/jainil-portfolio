@@ -8,7 +8,7 @@ export const RESUME_DATA = {
     email: 'jainil237@gmail.com',
     location: 'Ahmedabad, India',
     summary:
-      'Full-Stack Software Engineer with 2.5 years of experience in Angular, Node.js, Java, and PostgreSQL. Skilled in building scalable web applications, developing RESTful APIs, and integrating AI/LLM solutions. Proven track record in modernizing legacy codebases and enhancing user accessibility.',
+      'Full-Stack Software Engineer with 2.5 years of experience in Angular, Node.js, React, Java, and PostgreSQL. Skilled in building scalable web applications and developing RESTful APIs. Experienced in integrating AI/LLM solutions with OpenAI APIs and collaborating with cross-functional teams to deliver high-performance, user-focused software.',
     avatar:
       'https://api.dicebear.com/7.x/avataaars/svg?seed=Jainil&backgroundColor=18181b&clothing=blazerAndShirt&eyes=happy&skinColor=light',
     linkedin: 'https://www.linkedin.com/in/jainil-mehta-5b83a1183/',
@@ -18,7 +18,7 @@ export const RESUME_DATA = {
   skills: [
     {
       name: 'Frontend',
-      items: ['Angular', 'RxJS', 'NgRx', 'Signals', 'Material-Angular', 'React'],
+      items: ['Angular', 'RxJS', 'NgRx', 'Signals', 'Material-Angular', 'React', 'Next.js'],
     },
     { name: 'Backend', items: ['Node.js', 'NestJS', 'REST APIs', 'Sequelize'] },
     { name: 'Databases', items: ['PostgreSQL', 'MongoDB'] },
@@ -48,6 +48,7 @@ export const RESUME_DATA = {
         'Node.JS',
         'Material Angular',
         'OpenAI API',
+        'React',
         'Mixpanel',
         'WCAG 2.1',
       ],
@@ -97,10 +98,31 @@ export const RESUME_DATA = {
   ],
   projects: [
     {
+      type: 'project',
+      title: 'Olive Audio Lab',
+      category: 'Web Application',
+      tech: 'React • Firebase • Tailwind',
+      desc: 'Developed a web application with React and Firebase-backed content management system for artists and discography. Built reusable, performance-optimized UI components using Tailwind CSS.',
+      details: [
+        'Developed a web application with React and Firebase-backed content management system for artists and discography.',
+        'Built reusable, performance-optimized UI components using Tailwind CSS, ensuring fast load times and responsive design across devices.',
+      ],
+      tags: ['React', 'Firebase', 'Tailwind CSS'],
+      webSiteLink: 'https://olive-audio-lab.vercel.app/',
+      link: 'https://github.com/jainil237/olive-audio-lab',
+    },
+    {
+      type: 'project',
       title: 'FindsyouMatch',
-      category: 'Social Platform',
+      category: 'Dating Web App',
       tech: 'Angular • .NET Core',
-      desc: 'A high-performance matchmaking engine with real-time WebSocket messaging and complex filtering algorithms.',
+      desc: 'Developed a matchmaking web application with Angular and .NET Core Web API. Features profile matching, messaging, and real-time data handling.',
+      details: [
+        'Built a scalable platform with features like profile matching, messaging, and photo uploads.',
+        'Delivered a seamless user experience by integrating real-time data handling.',
+      ],
+      tags: ['Angular', '.NET Core'],
+      link: 'https://github.com/jainil237/FindsyouMatch',
     },
   ],
   awards: [
