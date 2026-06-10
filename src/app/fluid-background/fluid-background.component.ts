@@ -352,6 +352,10 @@ export class FluidBackgroundComponent implements AfterViewInit, OnDestroy {
     if (this.boundPointerDown) window.removeEventListener('pointerdown', this.boundPointerDown);
     if (this.boundPointerUp) window.removeEventListener('pointerup', this.boundPointerUp);
     if (this.boundResize) window.removeEventListener('resize', this.boundResize);
+    
+    // Also remove any generic touch listeners
+    window.removeEventListener('touchstart', this.boundPointerDown as any);
+    window.removeEventListener('touchmove', this.boundPointerMove as any);
   }
 
   private isWebGL2 = false;
@@ -546,23 +550,45 @@ export class FluidBackgroundComponent implements AfterViewInit, OnDestroy {
     this.boundResize();
     window.addEventListener('resize', this.boundResize);
 
-    this.boundPointerMove = (e: PointerEvent) => {
+    const handleInput = (clientX: number, clientY: number, target: EventTarget | null, isDown = false) => {
       const rect = (this.gl.canvas as HTMLCanvasElement).getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width;
-      const y = 1.0 - (e.clientY - rect.top) / rect.height;
+      const x = (clientX - rect.left) / rect.width;
+      const y = 1.0 - (clientY - rect.top) / rect.height;
+      
       this.pointer.dx = (x - this.pointer.x) * 10.0;
       this.pointer.dy = (y - this.pointer.y) * 10.0;
+      
+      // If tapping/touching without moving, create a synthetic force to ensure a splash
+      if (isDown && Math.abs(this.pointer.dx) < 0.1 && Math.abs(this.pointer.dy) < 0.1) {
+        this.pointer.dx = (Math.random() - 0.5) * 2.0;
+        this.pointer.dy = (Math.random() - 0.5) * 2.0;
+      }
+      
       this.pointer.x = x;
       this.pointer.y = y;
 
-      const target = e.target as HTMLElement;
-      const isOverForeground = target?.closest?.('.glass-card, nav, .modal-enter') !== null;
+      const htmlTarget = target as HTMLElement;
+      const isOverForeground = htmlTarget?.closest?.('.glass-card, nav, .modal-enter') !== null;
       
       if (!isOverForeground) {
         this.pointer.moved = true;
       }
     };
+
+    this.boundPointerMove = (e: PointerEvent) => handleInput(e.clientX, e.clientY, e.target);
+    this.boundPointerDown = (e: PointerEvent) => handleInput(e.clientX, e.clientY, e.target, true);
+
     window.addEventListener('pointermove', this.boundPointerMove, { passive: true });
+    window.addEventListener('pointerdown', this.boundPointerDown, { passive: true });
+    
+    // Explicit touch events for older mobiles
+    window.addEventListener('touchstart', (e: TouchEvent) => {
+      if (e.touches.length > 0) handleInput(e.touches[0].clientX, e.touches[0].clientY, e.target, true);
+    }, { passive: true });
+    
+    window.addEventListener('touchmove', (e: TouchEvent) => {
+      if (e.touches.length > 0) handleInput(e.touches[0].clientX, e.touches[0].clientY, e.target);
+    }, { passive: true });
   }
 
   private update = () => {
