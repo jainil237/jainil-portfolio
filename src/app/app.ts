@@ -1,20 +1,59 @@
-import { Component, signal, HostListener } from '@angular/core';
+import { Component, signal, HostListener, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FluidBackgroundComponent } from './fluid-background/fluid-background.component';
+import { CursorComponent } from './cursor/cursor.component';
 import { RESUME_DATA } from '../shared/resume.data';
+import gsap from 'gsap';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FluidBackgroundComponent, CursorComponent],
   templateUrl: './app.html',
-  styleUrls: ['./app.css'],
+  styleUrls: ['./app.scss'],
 })
-export class App {
+export class App implements AfterViewInit {
+  @ViewChild('mobileMenu') mobileMenu!: ElementRef;
+  private menuTl: gsap.core.Timeline | null = null;
   protected readonly title = signal('jainil-portfolio');
   data = RESUME_DATA;
   activeModalData: any = null;
   isMenuOpen = false;
   showScrollTop = false;
+
+  ngAfterViewInit() {
+    this.menuTl = gsap.timeline({ paused: true, reversed: true });
+    
+    if (this.mobileMenu) {
+      this.menuTl.fromTo(this.mobileMenu.nativeElement,
+        { autoAlpha: 0, y: -10 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.3,
+          ease: 'power3.out',
+          easeReverse: 'power3.inOut'
+        }
+      );
+      
+      const links = this.mobileMenu.nativeElement.querySelectorAll('.mobile-link, .mobile-link--primary');
+      if (links.length) {
+        const linksArray = Array.from(links);
+        this.menuTl.fromTo(linksArray,
+          { autoAlpha: 0, y: -10 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            stagger: 0.05,
+            duration: 0.2,
+            ease: 'power3.out',
+            easeReverse: 'power3.inOut'
+          },
+          "-=0.15"
+        );
+      }
+    }
+  }
 
   scrollTo(id: string) {
     const el = document.getElementById(id);
@@ -34,8 +73,20 @@ export class App {
     document.body.style.overflow = '';
   }
 
-  toggleMenu(forceState?: boolean) {
-    this.isMenuOpen = forceState ?? !this.isMenuOpen;
+  toggleMenu(forceState?: boolean | any) {
+    if (typeof forceState === 'boolean') {
+      this.isMenuOpen = forceState;
+    } else {
+      this.isMenuOpen = !this.isMenuOpen;
+    }
+    
+    if (this.menuTl) {
+      if (this.isMenuOpen) {
+        this.menuTl.timeScale(1).play();
+      } else {
+        this.menuTl.timeScale(1.5).reverse();
+      }
+    }
   }
 
   scrollToTop() {

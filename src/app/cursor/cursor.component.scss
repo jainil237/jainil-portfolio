@@ -1,0 +1,39 @@
+:host {
+  display: none;
+  @media (pointer: fine) {
+    display: block;
+  }
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  /* The x/y tracking and centering (translate(-50%, -50%)) will be handled by GSAP using xPercent/yPercent */
+}
+
+.cursor-icon {
+  width: 24px;
+  height: 24px;
+  color: white;
+  opacity: 0;
+  transform: scale(0) rotate(-45deg);
+  transition: opacity 0.3s cubic-bezier(0.2, 0, 0, 1), transform 0.3s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.hover-state .cursor-icon {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}

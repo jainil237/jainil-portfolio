@@ -18,10 +18,10 @@ export const RESUME_DATA = {
   skills: [
     {
       name: 'Frontend',
-      items: ['Angular', 'RxJS', 'NgRx', 'Signals', 'Material-Angular', 'React', 'Next.js'],
+      items: ['Angular', 'RxJS', 'NgRx', 'Signals', 'Material-Angular', 'React.js', 'Next.js','CSS'],
     },
-    { name: 'Backend', items: ['Node.js', 'NestJS', 'REST APIs', 'Sequelize'] },
-    { name: 'Databases', items: ['PostgreSQL', 'MongoDB'] },
+    { name: 'Backend', items: ['Node.js', 'Express.js','NestJS', 'REST APIs', 'Sequelize','AWS'] },
+    { name: 'Databases', items: ['PostgreSQL', 'MongoDB','MySQL'] },
     { name: 'Coding Languages', items: ['TypeScript', 'JavaScript', 'Java', 'C++', 'C'] },
   ],
   experience: [
@@ -35,12 +35,14 @@ export const RESUME_DATA = {
       description:
         'Spearheaded the migration to Angular v16 and engineered enterprise-grade web modules.',
       details: [
-        'Developed and delivered enterprise-grade Angular web modules from planning to production, ensuring scalability and maintainability.',
-        'Migrated the front-end web application from Angular v10 to v16, incorporating WCAG 2.1 accessibility enhancements.',
-        'Refactored a traditional monolithic codebase into a modular MVVM architecture with custom state management.',
-        'Implemented end-to-end analytics using Mixpanel event tracking for data-driven decision making.',
-        'Designed reusable UI components with Angular Material, ensuring design consistency across all products.',
-        'Collaborated with cross-functional teams to ensure timely product delivery and alignment with client requirements.',
+        'Delivered scalable frontend features using Angular v16 TypeScript, and RxJS, collaborating cross-functionally with Product, Design, QA, and Backend teams to ship production-ready features in Agile sprints.',
+        'Contributed to Angular v10 to v16 migration, improving code maintainability, reducing technical debt, and aligning the application with modern Angular standards.',
+        'Refactored legacy UI modules into a modular MVVM-based architecture, improving code readability and enabling faster feature development across modules.',
+        'Developed reusable Angular Material components and standardized UI patterns adhering to WCAG 2.1 and Section 508 accessibility standards, ensuring accessible user experiences while reducing UI duplication and improving development efficiency.',
+        'Developed and optimized RESTful APIs using Node.js and Sequelize with PostgreSQL, improving query efficiency and ensuring reliable backend performance for data-intensive workflows.',
+        'Integrated Mixpanel analytics to track user interactions and feature usage, enabling data-driven insights for product decisions and UX improvements.',
+        'Supported production stability and release cycles by debugging critical issues, participating in code reviews, and collaborating with QA/DevOps to ensure smooth deployments.',
+        'Developed a React-based POC to evaluate alternative frontend approaches, analyzing trade-offs in performance, reusability, and scalability for future architecture decisions.',
       ],
       tags: [
         'Angular',
@@ -56,15 +58,16 @@ export const RESUME_DATA = {
     {
       id: 'job-2',
       type: 'experience' as const,
-      title: 'Intern',
-      subtitle: 'DXFactor Solutions Private Limited',
+      title: 'Software Engineer Intern',
+      subtitle: 'DXFactor',
       date: 'Jul 2022 – Dec 2022',
       location: 'Ahmedabad, India',
       description:
         'Developed responsive dashboards and RESTful APIs to enhance business decision-making.',
       details: [
-        'Developed responsive, data-driven dashboards using Angular and AmCharts, enabling business teams to visualize key performance metrics and improve decision-making efficiency.',
-        'Designed and implemented modular RESTful APIs with .NET Core Web API, ensuring scalability, reusability, and seamless integration with frontend components.',
+        'Developed responsive Angular dashboards using AmCharts to visualize business KPIs, enabling structured data analysis and reporting workflows.',
+        'Built .NET Core Web APIs to support dashboard functionalities, focusing on reusable endpoint design, efficient data handling, and maintainable backend architecture.',
+        'Implemented dynamic filtering, search capabilities, and optimized data views, improving data retrieval efficiency and enhancing overall system responsiveness.',
       ],
       tags: ['Angular', 'AmCharts', '.NET Core Web API', 'RESTful APIs'],
     },
@@ -99,6 +102,33 @@ export const RESUME_DATA = {
   projects: [
     {
       type: 'project',
+      title: 'Augmented Field Operations (AFO) Platform',
+      category: 'GovTech Platform',
+      tech: 'Angular • Node.js • PostgreSQL • React.js • AWS',
+      desc: 'Contributed to a GovTech platform used by US agencies for environmental monitoring, compliance, and inspection workflows.',
+      details: [
+        'Contributed to a GovTech platform used by US agencies for environmental monitoring, compliance, and inspection workflows.',
+        'Delivered PWA online/offline sync and key modules including inspections, violations, attachments, and location management.',
+        'Implemented Section 508 accessibility compliance, improving usability and aligning with regulatory standards.',
+        'Supported production releases and sprint delivery, ensuring system stability and timely feature rollout.',
+      ],
+      tags: ['Angular', 'Node.js', 'PostgreSQL', 'React.js', 'Section 508', 'AWS'],
+    },
+    {
+      type: 'project',
+      title: 'Dynamic Inspection Template Builder',
+      category: 'Template Management System',
+      tech: 'Angular • JSON Schema • Node.js',
+      desc: 'Built a low-code template management system using JSON schema to enable dynamic inspection form creation.',
+      details: [
+        'Built a low-code template management system using JSON schema to enable dynamic inspection form creation.',
+        'Enabled real-time preview and validation, improving usability and reducing configuration errors.',
+        'Reduced developer dependency, accelerating template updates and improving operational efficiency.',
+      ],
+      tags: ['Angular', 'JSON Schema', 'Node.js'],
+    },
+    {
+      type: 'project',
       title: 'Olive Audio Lab',
       category: 'Web Application',
       tech: 'React • Firebase • Tailwind',
@@ -107,22 +137,9 @@ export const RESUME_DATA = {
         'Developed a web application with React and Firebase-backed content management system for artists and discography.',
         'Built reusable, performance-optimized UI components using Tailwind CSS, ensuring fast load times and responsive design across devices.',
       ],
-      tags: ['React', 'Firebase', 'Tailwind CSS'],
+      tags: ['React.js', 'Firebase', 'Tailwind CSS'],
       webSiteLink: 'https://olive-audio-lab.vercel.app/',
       link: 'https://github.com/jainil237/olive-audio-lab',
-    },
-    {
-      type: 'project',
-      title: 'FindsyouMatch',
-      category: 'Dating Web App',
-      tech: 'Angular • .NET Core',
-      desc: 'Developed a matchmaking web application with Angular and .NET Core Web API. Features profile matching, messaging, and real-time data handling.',
-      details: [
-        'Built a scalable platform with features like profile matching, messaging, and photo uploads.',
-        'Delivered a seamless user experience by integrating real-time data handling.',
-      ],
-      tags: ['Angular', '.NET Core'],
-      link: 'https://github.com/jainil237/FindsyouMatch',
     },
   ],
   awards: [
