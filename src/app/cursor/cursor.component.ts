@@ -42,9 +42,18 @@ export class CursorComponent implements AfterViewInit, OnDestroy {
 
       this.boundMouseOver = (e: MouseEvent) => {
         const target = e.target as HTMLElement;
-        const isInteractive = target.closest('a, button, [data-cursor-link], .group\\/item, [role="button"]');
+        const anchor = target.closest('a');
         
-        if (isInteractive && !this.isHovering) {
+        let isLink = false;
+        if (anchor) {
+          const href = anchor.getAttribute('href');
+          // Check if it's an actual navigation link
+          if (href && href !== '#' && href.trim() !== '') {
+            isLink = true;
+          }
+        }
+        
+        if (isLink && !this.isHovering) {
           this.isHovering = true;
           el.classList.add('hover-state');
           gsap.to(el, {
@@ -61,9 +70,17 @@ export class CursorComponent implements AfterViewInit, OnDestroy {
 
       this.boundMouseOut = (e: MouseEvent) => {
         const target = e.target as HTMLElement;
-        const isInteractive = target.closest('a, button, [data-cursor-link], .group\\/item, [role="button"]');
+        const anchor = target.closest('a');
         
-        if (isInteractive && this.isHovering) {
+        let isLink = false;
+        if (anchor) {
+          const href = anchor.getAttribute('href');
+          if (href && href !== '#' && href.trim() !== '') {
+            isLink = true;
+          }
+        }
+        
+        if (isLink && this.isHovering) {
           this.isHovering = false;
           el.classList.remove('hover-state');
           gsap.to(el, {
