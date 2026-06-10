@@ -5,3 +5,10 @@
 
 /* Optional: Global reset for the dark theme */
 body { background-color: #050505; margin: 0; }
+
+/* Custom Cursor Setup */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}

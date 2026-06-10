@@ -1,11 +1,13 @@
 import { Component, signal, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FluidBackgroundComponent } from './fluid-background/fluid-background.component';
+import { CursorComponent } from './cursor/cursor.component';
 import { RESUME_DATA } from '../shared/resume.data';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FluidBackgroundComponent, CursorComponent],
   templateUrl: './app.html',
   styleUrls: ['./app.css'],
 })

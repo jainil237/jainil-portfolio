@@ -1,16 +1,15 @@
-<!-- Main Container with Noise Texture Overlay -->
+<!-- Main Container -->
 <div
   class="min-h-screen bg-[#050505] text-zinc-100 font-sans selection:bg-indigo-500/30 selection:text-indigo-200 relative overflow-x-hidden">
-  <!-- Subtle Ambient Glows -->
-  <div
-    class="fixed top-0 left-1/4 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none opacity-40 mix-blend-screen animate-pulse-slow">
-  </div>
-  <div
-    class="fixed bottom-0 right-1/4 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[120px] pointer-events-none opacity-30 mix-blend-screen">
-  </div>
+
+  <!-- Custom Interactive Cursor -->
+  <app-cursor></app-cursor>
+
+  <!-- Fluid Simulation Background -->
+  <app-fluid-background></app-fluid-background>
 
   <!-- Main Content -->
-  <main id="home" class="container mx-auto px-4 pt-24 pb-20 max-w-5xl relative z-10">
+  <main id="home" class="container mx-auto px-4 pt-24 pb-20 max-w-5xl relative z-20" style="isolation: isolate;">
     <!-- Hero Section -->
     <div class="mb-16 flex flex-col items-center text-center gap-6">
       <div
