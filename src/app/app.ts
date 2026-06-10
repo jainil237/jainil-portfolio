@@ -25,23 +25,32 @@ export class App implements AfterViewInit {
     this.menuTl = gsap.timeline({ paused: true, reversed: true });
     
     if (this.mobileMenu) {
-      this.menuTl.to(this.mobileMenu.nativeElement, {
-        display: 'block',
-        opacity: 1,
-        y: 0,
-        duration: 0.3,
-        ease: 'power3.out'
-      });
+      this.menuTl.fromTo(this.mobileMenu.nativeElement,
+        { autoAlpha: 0, y: -10 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.3,
+          ease: 'power3.out',
+          easeReverse: 'power3.inOut'
+        }
+      );
       
       const links = this.mobileMenu.nativeElement.querySelectorAll('.mobile-link, .mobile-link--primary');
       if (links.length) {
-        this.menuTl.from(links, {
-          opacity: 0,
-          y: -10,
-          stagger: 0.05,
-          duration: 0.2,
-          ease: 'power3.out'
-        }, "-=0.15");
+        const linksArray = Array.from(links);
+        this.menuTl.fromTo(linksArray,
+          { autoAlpha: 0, y: -10 },
+          {
+            autoAlpha: 1,
+            y: 0,
+            stagger: 0.05,
+            duration: 0.2,
+            ease: 'power3.out',
+            easeReverse: 'power3.inOut'
+          },
+          "-=0.15"
+        );
       }
     }
   }
@@ -64,14 +73,18 @@ export class App implements AfterViewInit {
     document.body.style.overflow = '';
   }
 
-  toggleMenu(forceState?: boolean) {
-    const targetState = forceState ?? !this.isMenuOpen;
-    if (targetState !== this.isMenuOpen) {
-      this.isMenuOpen = targetState;
+  toggleMenu(forceState?: boolean | any) {
+    if (typeof forceState === 'boolean') {
+      this.isMenuOpen = forceState;
+    } else {
+      this.isMenuOpen = !this.isMenuOpen;
+    }
+    
+    if (this.menuTl) {
       if (this.isMenuOpen) {
-        this.menuTl?.play();
+        this.menuTl.timeScale(1).play();
       } else {
-        this.menuTl?.reverse();
+        this.menuTl.timeScale(1.5).reverse();
       }
     }
   }

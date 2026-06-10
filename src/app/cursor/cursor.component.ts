@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy, NgZone } from '@angular/core';
+import { Component, ElementRef, ViewChild, ViewChildren, QueryList, AfterViewInit, OnDestroy, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { gsap } from 'gsap';
 
@@ -11,7 +11,10 @@ import { gsap } from 'gsap';
 })
 export class CursorComponent implements AfterViewInit, OnDestroy {
   @ViewChild('cursor', { static: true }) cursorRef!: ElementRef<HTMLDivElement>;
+  @ViewChildren('trail') trailRefs!: QueryList<ElementRef<HTMLDivElement>>;
   
+  trailCount = [0, 1, 2, 3, 4, 5, 6, 7];
+
   private quickToX!: gsap.QuickToFunc;
   private quickToY!: gsap.QuickToFunc;
   private boundMouseMove!: (e: MouseEvent) => void;
@@ -25,35 +28,66 @@ export class CursorComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.ngZone.runOutsideAngular(() => {
       const el = this.cursorRef.nativeElement;
+      const trails = this.trailRefs.map(ref => ref.nativeElement);
       
-      // Center the transform origin
       gsap.set(el, { xPercent: -50, yPercent: -50 });
+      gsap.set(trails, { xPercent: -50, yPercent: -50, scale: 0 });
       
       this.quickToX = gsap.quickTo(el, 'x', { duration: 0.15, ease: 'power3.out' });
       this.quickToY = gsap.quickTo(el, 'y', { duration: 0.15, ease: 'power3.out' });
 
-      // Initially place the cursor off-screen to prevent a flash at 0,0
+      // Create quickTo for each trail
+      const trailQuickTos = trails.map(t => ({
+        x: gsap.quickTo(t, 'x', { duration: 0.3, ease: 'power3.out' }),
+        y: gsap.quickTo(t, 'y', { duration: 0.3, ease: 'power3.out' })
+      }));
+
       gsap.set(el, { x: -100, y: -100 });
+
+      let trailTimeline: gsap.core.Tween | null = null;
 
       this.boundMouseMove = (e: MouseEvent) => {
         this.quickToX(e.clientX);
         this.quickToY(e.clientY);
+
+        // Animate trails following the cursor with a stagger
+        if (trailTimeline) trailTimeline.kill();
+        trailTimeline = gsap.to(trails, {
+          x: e.clientX,
+          y: e.clientY,
+          stagger: {
+            each: 0.02,
+            from: "start"
+          },
+          duration: 0.4,
+          ease: "power3.out",
+          overwrite: true
+        });
+        
+        // Show trails once moved
+        gsap.to(trails, { scale: 1, duration: 0.3, stagger: 0.02, overwrite: "auto" });
       };
 
       this.boundMouseOver = (e: MouseEvent) => {
         const target = e.target as HTMLElement;
         const anchor = target.closest('a');
         
-        let isLink = false;
+        let isArrowTarget = false;
         if (anchor) {
-          const href = anchor.getAttribute('href');
-          // Check if it's an actual navigation link
-          if (href && href !== '#' && href.trim() !== '') {
-            isLink = true;
+          const href = anchor.getAttribute('href') || '';
+          if (href.startsWith('http://') || href.startsWith('https://')) {
+            isArrowTarget = true;
+          } else if (
+            anchor.classList.contains('nav-link') ||
+            anchor.classList.contains('nav-link--primary') ||
+            anchor.classList.contains('mobile-link') ||
+            anchor.classList.contains('mobile-link--primary')
+          ) {
+            isArrowTarget = true;
           }
         }
         
-        if (isLink && !this.isHovering) {
+        if (isArrowTarget && !this.isHovering) {
           this.isHovering = true;
           el.classList.add('hover-state');
           gsap.to(el, {
@@ -65,6 +99,13 @@ export class CursorComponent implements AfterViewInit, OnDestroy {
             duration: 0.3,
             ease: 'power3.out'
           });
+          
+          // Collapse trails
+          gsap.to(trails, {
+            scale: 0,
+            duration: 0.2,
+            stagger: 0.01
+          });
         }
       };
 
@@ -72,15 +113,22 @@ export class CursorComponent implements AfterViewInit, OnDestroy {
         const target = e.target as HTMLElement;
         const anchor = target.closest('a');
         
-        let isLink = false;
+        let isArrowTarget = false;
         if (anchor) {
-          const href = anchor.getAttribute('href');
-          if (href && href !== '#' && href.trim() !== '') {
-            isLink = true;
+          const href = anchor.getAttribute('href') || '';
+          if (href.startsWith('http://') || href.startsWith('https://')) {
+            isArrowTarget = true;
+          } else if (
+            anchor.classList.contains('nav-link') ||
+            anchor.classList.contains('nav-link--primary') ||
+            anchor.classList.contains('mobile-link') ||
+            anchor.classList.contains('mobile-link--primary')
+          ) {
+            isArrowTarget = true;
           }
         }
         
-        if (isLink && this.isHovering) {
+        if (isArrowTarget && this.isHovering) {
           this.isHovering = false;
           el.classList.remove('hover-state');
           gsap.to(el, {
@@ -91,6 +139,12 @@ export class CursorComponent implements AfterViewInit, OnDestroy {
             borderColor: 'rgba(255, 255, 255, 0.6)',
             duration: 0.3,
             ease: 'power3.out'
+          });
+          
+          gsap.to(trails, {
+            scale: 1,
+            duration: 0.3,
+            stagger: 0.02
           });
         }
       };

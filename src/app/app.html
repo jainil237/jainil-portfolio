@@ -48,7 +48,7 @@
           </div>
         </div>
 
-        <div #mobileMenu class="mobile-menu" style="display: none; opacity: 0; transform: translateY(-10px);">
+        <div #mobileMenu class="mobile-menu" style="visibility: hidden; opacity: 0; transform: translateY(-10px);">
           <div class="glass-card mobile-menu__inner">
             <a (click)="scrollTo('home'); toggleMenu(false)" class="mobile-link">Home</a>
             <a (click)="scrollTo('about'); toggleMenu(false)" class="mobile-link">About</a>
@@ -347,8 +347,8 @@
           </div>
           <h3 class="section-title">Honors & Awards</h3>
         </div>
-        <div class="horizontal-scroll hide-scrollbar">
-          <a *ngFor="let award of data.awards" target="_blank" class="horizontal-card group-item">
+        <div class="items-list">
+          <a *ngFor="let award of data.awards" target="_blank" class="list-item group-item">
             <div>
               <div class="list-item-title group-hover-item-yellow">{{ award.title }}</div>
               <div class="list-item-subtitle">{{ award.org }}</div>
@@ -382,8 +382,8 @@
           </div>
           <h3 class="section-title">Certifications</h3>
         </div>
-        <div class="horizontal-scroll hide-scrollbar">
-          <a *ngFor="let cert of data.certificates" [href]="cert.link" target="_blank" class="horizontal-card group-item">
+        <div class="items-list">
+          <a *ngFor="let cert of data.certificates" [href]="cert.link" target="_blank" class="list-item group-item">
             <div>
               <div class="list-item-title group-hover-item-sky line-clamp">{{ cert.title }}</div>
               <div class="list-item-subtitle">{{ cert.org }}</div>
@@ -473,10 +473,9 @@
             <h2 class="modal-title">{{ activeModalData.title }}</h2>
             <p class="modal-subtitle">{{ activeModalData.subtitle }}</p>
           </div>
-          <button (click)="closeModal()" class="modal-close-btn">
-            <svg class="icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
+          <button (click)="closeModal()" class="modal-close-btn" aria-label="Close modal">
+            <svg class="icon-md" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 6L6 18M6 6l12 12" />
             </svg>
           </button>
         </div>
