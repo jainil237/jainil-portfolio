@@ -1,14 +1,14 @@
 export const RESUME_DATA = {
   profile: {
     name: 'Jainil Deven Mehta',
-    role: 'Full-Stack Engineer',
+    role: 'Software Engineer',
     headline: 'Engineering Scalable Solutions',
     short_pitch:
-      "Hi, I'm Jainil Mehta. I'm a Full-Stack Software Engineer specializing in the Angular & Node.js ecosystem. I transform complex requirements into high-performance, accessible web applications.",
+      'Frontend Software Engineer with 2.5+ years of experience building enterprise SaaS applications and modern web interfaces. Skilled in React.js, TypeScript, JavaScript, and Angular, with expertise in component architecture, REST API integration, frontend performance optimization, and accessible UI development aligned with WCAG 2.1 and Section 508 standards.',
     email: 'jainil237@gmail.com',
     location: 'Ahmedabad, India',
     summary:
-      'Full-Stack Software Engineer with 2.5 years of experience in Angular, Node.js, React, Java, and PostgreSQL. Skilled in building scalable web applications and developing RESTful APIs. Experienced in integrating AI/LLM solutions with OpenAI APIs and collaborating with cross-functional teams to deliver high-performance, user-focused software.',
+      'Frontend Software Engineer with 2.5+ years of experience building enterprise SaaS applications and modern web interfaces. Skilled in React.js, TypeScript, JavaScript, and Angular, with expertise in component architecture, REST API integration, frontend performance optimization, and accessible UI development aligned with WCAG 2.1 and Section 508 standards.',
     avatar:
       'https://api.dicebear.com/7.x/avataaars/svg?seed=Jainil&backgroundColor=18181b&clothing=blazerAndShirt&eyes=happy&skinColor=light',
     linkedin: 'https://www.linkedin.com/in/jainil-mehta-5b83a1183/',
@@ -18,11 +18,18 @@ export const RESUME_DATA = {
   skills: [
     {
       name: 'Frontend',
-      items: ['Angular', 'RxJS', 'NgRx', 'Signals', 'Material-Angular', 'React.js', 'Next.js','CSS'],
+      items: ['React.js', 'Next.js', 'Angular', 'Redux', 'NgRx', 'RxJS', 'Signals', 'Angular Material', 'HTML', 'CSS'],
     },
-    { name: 'Backend', items: ['Node.js', 'Express.js','NestJS', 'REST APIs', 'Sequelize','AWS'] },
-    { name: 'Databases', items: ['PostgreSQL', 'MongoDB','MySQL'] },
-    { name: 'Coding Languages', items: ['TypeScript', 'JavaScript', 'Java', 'C++', 'C'] },
+    {
+      name: 'Backend',
+      items: ['Node.js', 'Express.js', 'NestJS', 'REST APIs', 'Sequelize', 'AWS S3', 'AWS Lambda', 'EC2', 'Cognito'],
+    },
+    { name: 'Databases', items: ['PostgreSQL', 'MongoDB', 'MySQL', 'Firebase'] },
+    { name: 'Coding Languages', items: ['TypeScript', 'JavaScript', 'Python', 'Java', 'C++', 'C'] },
+    {
+      name: 'AI, Tools & Practices',
+      items: ['Git', 'BitBucket', 'Jira', 'Agile/Scrum', 'CI/CD', 'OpenAI API', 'Claude Code', 'Mixpanel'],
+    },
   ],
   experience: [
     {
@@ -35,14 +42,12 @@ export const RESUME_DATA = {
       description:
         'Spearheaded the migration to Angular v16 and engineered enterprise-grade web modules.',
       details: [
-        'Delivered scalable frontend features using Angular v16 TypeScript, and RxJS, collaborating cross-functionally with Product, Design, QA, and Backend teams to ship production-ready features in Agile sprints.',
-        'Contributed to Angular v10 to v16 migration, improving code maintainability, reducing technical debt, and aligning the application with modern Angular standards.',
-        'Refactored legacy UI modules into a modular MVVM-based architecture, improving code readability and enabling faster feature development across modules.',
-        'Developed reusable Angular Material components and standardized UI patterns adhering to WCAG 2.1 and Section 508 accessibility standards, ensuring accessible user experiences while reducing UI duplication and improving development efficiency.',
-        'Developed and optimized RESTful APIs using Node.js and Sequelize with PostgreSQL, improving query efficiency and ensuring reliable backend performance for data-intensive workflows.',
-        'Integrated Mixpanel analytics to track user interactions and feature usage, enabling data-driven insights for product decisions and UX improvements.',
-        'Supported production stability and release cycles by debugging critical issues, participating in code reviews, and collaborating with QA/DevOps to ensure smooth deployments.',
-        'Developed a React-based POC to evaluate alternative frontend approaches, analyzing trade-offs in performance, reusability, and scalability for future architecture decisions.',
+        'Shipped production frontend features for ARInspect, an enterprise GovTech platform supporting environmental compliance and inspection workflows, collaborating with Product, Design, QA, and Backend teams in Agile sprints.',
+        'Developed a React-based proof of concept to evaluate component-driven architecture, reusable UI patterns, and frontend scalability for future product initiatives.',
+        'Refactored legacy frontend modules into a modular MVVM-based architecture by introducing reusable component patterns and a centralized custom state management solution inspired by Redux principles, improving maintainability and predictable state updates.',
+        'Modernized the application by contributing to the migration from Angular v10 to Angular v16, while developing reusable, accessible UI components aligned with WCAG 2.1 and Section 508 standards.',
+        'Developed and optimized RESTful APIs using Node.js, Sequelize, and PostgreSQL, enabling seamless frontend integration for data-intensive enterprise workflows.',
+        'Integrated Mixpanel analytics to capture user behavior and support data-driven product improvements, while contributing to production stability through debugging, code reviews, and cross-functional release support.',
       ],
       tags: [
         'Angular',
@@ -65,11 +70,11 @@ export const RESUME_DATA = {
       description:
         'Developed responsive dashboards and RESTful APIs to enhance business decision-making.',
       details: [
-        'Developed responsive Angular dashboards using AmCharts to visualize business KPIs, enabling structured data analysis and reporting workflows.',
-        'Built .NET Core Web APIs to support dashboard functionalities, focusing on reusable endpoint design, efficient data handling, and maintainable backend architecture.',
-        'Implemented dynamic filtering, search capabilities, and optimized data views, improving data retrieval efficiency and enhancing overall system responsiveness.',
+        'Developed responsive Angular dashboards for visualization and analysis of business KPIs.',
+        'Built .NET Core Web APIs supporting enterprise dashboard functionality, with emphasis on reusable endpoints and maintainable backend application architecture.',
+        'Implemented dynamic filtering, search functionality, and optimized data views to improve application responsiveness and data-access efficiency.',
       ],
-      tags: ['Angular', 'AmCharts', '.NET Core Web API', 'RESTful APIs'],
+      tags: ['Angular', '.NET Core Web API', 'RESTful APIs'],
     },
   ],
   education: [
@@ -102,6 +107,60 @@ export const RESUME_DATA = {
   projects: [
     {
       type: 'project',
+      title: 'E-Commerce Platform',
+      category: 'Full-Stack Monorepo',
+      tech: 'Next.js • TypeScript • Node.js • PostgreSQL • Redis',
+      desc: 'Full-stack e-commerce monorepo sharing pages and logic across buyer and admin apps, with concurrency-safe inventory, payments, and queue-backed notifications.',
+      details: [
+        'Built a full-stack e-commerce monorepo (Next.js, TypeScript, Node.js, Express.js, PostgreSQL) sharing pages and logic across buyer and admin apps.',
+        'Implemented an inventory reservation system that holds stock at order creation and converts it at payment, with row-level locking to prevent overselling under concurrent orders.',
+        'Implemented BullMQ workers backed by Redis for email, OTP, and shipping notifications, with retry handling and fallback execution to keep request flows resilient.',
+        'Implemented Redis-backed caching for product/category APIs and rate limiting, with in-memory fallbacks to preserve availability during Redis outages.',
+        'Integrated third-party payment processing with webhook-driven order updates, automated invoice PDF generation, and concurrency-safe coupon redemption using atomic guards and unique constraints.',
+      ],
+      tags: [
+        'Next.js',
+        'TypeScript',
+        'Node.js',
+        'Express.js',
+        'PostgreSQL',
+        'Redis',
+        'BullMQ',
+      ],
+      webSiteLink: 'https://jainil-mystore.vercel.app/',
+    },
+    {
+      type: 'project',
+      title: 'Olive Audio Lab',
+      category: 'Content Management Platform',
+      tech: 'React • Firebase • Shadcn UI • Tailwind',
+      desc: 'Full-stack content management platform for artists and music discography, with real-time sync and role-based admin publishing.',
+      details: [
+        'Built a full-stack content management platform for artists and music discography, using React and Firebase for real-time data sync and role-based (admin) content publishing, including song/artist CRUD, dynamic forms, and embedded track players.',
+        'Developed a reusable component library with Shadcn UI and Tailwind CSS, delivering a fully responsive design and reducing per-feature UI development time.',
+        'Ran a Lighthouse-driven performance pass and deployed the app live on Vercel.',
+      ],
+      tags: ['React.js', 'Firebase', 'Shadcn UI', 'Tailwind CSS', 'Vercel'],
+      webSiteLink: 'https://olive-audio-lab.vercel.app/',
+      link: 'https://github.com/jainil237/olive-audio-lab',
+    },
+    {
+      type: 'project',
+      title: 'Big Moves Entertainment',
+      category: 'Marketing Website',
+      tech: 'Next.js • TypeScript • Tailwind • Vercel',
+      desc: 'Marketing site for a creative production studio offering sonic branding, video production, and music marketing under one creative direction.',
+      details: [
+        'Built the marketing website for Big Moves Entertainment, a creative production studio covering sonic branding, video production, and music marketing.',
+        'Developed service pages for jingles and sonic branding, video production, and artist growth marketing, structured around a single conversion path.',
+        'Implemented conversion-focused CTAs including strategy-call booking, WhatsApp contact, and inquiry forms across the site.',
+        'Optimized media-heavy pages with Next.js image optimization and responsive layouts for fast loads across devices, deployed on Vercel.',
+      ],
+      tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Responsive Design', 'Vercel'],
+      webSiteLink: 'https://bigmoves-ent.vercel.app/',
+    },
+    {
+      type: 'project',
       title: 'Augmented Field Operations (AFO) Platform',
       category: 'GovTech Platform',
       tech: 'Angular • Node.js • PostgreSQL • React.js • AWS',
@@ -114,47 +173,20 @@ export const RESUME_DATA = {
       ],
       tags: ['Angular', 'Node.js', 'PostgreSQL', 'React.js', 'Section 508', 'AWS'],
     },
-    {
-      type: 'project',
-      title: 'Dynamic Inspection Template Builder',
-      category: 'Template Management System',
-      tech: 'Angular • JSON Schema • Node.js',
-      desc: 'Built a low-code template management system using JSON schema to enable dynamic inspection form creation.',
-      details: [
-        'Built a low-code template management system using JSON schema to enable dynamic inspection form creation.',
-        'Enabled real-time preview and validation, improving usability and reducing configuration errors.',
-        'Reduced developer dependency, accelerating template updates and improving operational efficiency.',
-      ],
-      tags: ['Angular', 'JSON Schema', 'Node.js'],
-    },
-    {
-      type: 'project',
-      title: 'Olive Audio Lab',
-      category: 'Web Application',
-      tech: 'React • Firebase • Tailwind',
-      desc: 'Developed a web application with React and Firebase-backed content management system for artists and discography. Built reusable, performance-optimized UI components using Tailwind CSS.',
-      details: [
-        'Developed a web application with React and Firebase-backed content management system for artists and discography.',
-        'Built reusable, performance-optimized UI components using Tailwind CSS, ensuring fast load times and responsive design across devices.',
-      ],
-      tags: ['React.js', 'Firebase', 'Tailwind CSS'],
-      webSiteLink: 'https://olive-audio-lab.vercel.app/',
-      link: 'https://github.com/jainil237/olive-audio-lab',
-    },
   ],
   awards: [
     {
       title: 'SPOT Award',
       org: 'ARInspect',
       date: 'Aug 2023',
-      desc: 'Optimized ETL processes ensuring timely delivery.',
+      desc: 'Recognized for delivering a critical ETL solution that met client specifications, optimized data pipelines, and ensured on-time product delivery through effective cross-functional collaboration.',
       link: '',
     },
     {
       title: 'Governor Scout Award',
       org: 'Rajya Puraskar',
       date: 'Feb 2015',
-      desc: 'Highest state-level honor for Scouts.',
+      desc: 'Highest state-level scouting honor awarded by the State Governor for outstanding achievement in leadership and community service.',
       link: '',
     },
   ],
